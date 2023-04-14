@@ -154,7 +154,7 @@ startService() {
 tailLog() {
     touch /var/log/tinyproxy/tinyproxy.log
     screenOut "Tailing Tinyproxy log..."
-    tail -f $TAIL_LOG
+    tail -f /var/log/tinyproxy/tinyproxy.log
     checkStatus $? "Could not tail $TAIL_LOG" \
                    "Stopped tailing $TAIL_LOG"
 }
@@ -167,23 +167,25 @@ fi
 # Start script
 echo && screenOut "$PROG_NAME script started..."
 # Stop Tinyproxy if running
-stopService
-# Parse ACL from args
-export rawRules="$@" && parsedRules=$(parseAccessRules $rawRules) && unset rawRules
-# Set ACL in Tinyproxy config
-setAccess $parsedRules
-# Enable basic auth (if any)
-setAuth
-# Enable Filtering (if any)
-setFilter
-# Set Timeout (if any)
-setTimeout
-# Enable log to file
-enableLogFile
+#stopService
+## Parse ACL from args
+#export rawRules="$@" && parsedRules=$(parseAccessRules $rawRules) && unset rawRules
+## Set ACL in Tinyproxy config
+#setAccess $parsedRules
+## Enable basic auth (if any)
+#setAuth
+## Enable Filtering (if any)
+#setFilter
+## Set Timeout (if any)
+#setTimeout
+## Enable log to file
+#enableLogFile
 # Start Tinyproxy
-startService
+#startService
 # Tail Tinyproxy log
-tailLog
+
+/usr/bin/tinyproxy
+tail -f /var/log/tinyproxy/tinyproxy.log
 # End
 screenOut "$PROG_NAME script ended." && echo
 exit 0
