@@ -1,7 +1,10 @@
-tinyproxy:
-  image: vimagick/tinyproxy
-  ports:
-    - "8888:8888"
-  volumes:
-    - ./data:/etc/tinyproxy
-  restart: unless-stopped
+version: '1.0'
+services:
+  tinyproxy:
+    container_name: tinyproxy
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3381:3381"
+    restart: always
