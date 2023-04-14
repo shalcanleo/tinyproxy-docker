@@ -16,7 +16,7 @@ RUN set -xe \
 #              -e '/^#DisableViaHeader /s/^#//' \
 #              /etc/tinyproxy/tinyproxy.conf
 
-VOLUME /etc/tinyproxy
+COPY tinyproxy.conf /etc/tinyproxy/tinyproxy.conf
 EXPOSE 8888
 
 CMD ["tinyproxy", "-d"]
