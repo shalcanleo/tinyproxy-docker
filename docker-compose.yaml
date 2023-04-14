@@ -1,0 +1,14 @@
+version: '1.0'
+services:
+  tinyproxy:
+    restart: always
+    container_name: tinyproxy
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3381:3381"
+    environment:
+      PORT: 3381
+      BASIC_AUTH_USER: root
+      BASIC_AUTH_PASSWORD: root123
