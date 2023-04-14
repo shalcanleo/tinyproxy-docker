@@ -1,10 +1,14 @@
-# 基于 alpine 镜像构建
-FROM alpine:3.10
+FROM alpine
+MAINTAINER kev <noreply@easypi.pro>
 
-RUN apk add --no-cache \
-	bash \
-	tinyproxy
+RUN set -xe \
+    && apk add --no-cache tinyproxy \
+    && sed -i -e '/^Allow /s/^/#/' \
+              -e '/^ConnectPort /s/^/#/' \
+              -e '/^#DisableViaHeader /s/^#//' \
+              /etc/tinyproxy/tinyproxy.conf
 
-COPY run.sh /opt/docker-tinyproxy/run.sh
+VOLUME /etc/tinyproxy
+EXPOSE 3381
 
-ENTRYPOINT ["/opt/docker-tinyproxy/run.sh"]
+CMD ["tinyproxy", "-d"]
