@@ -184,8 +184,8 @@ echo && screenOut "$PROG_NAME script started..."
 #startService
 # Tail Tinyproxy log
 
-/usr/bin/tinyproxy
-tail -f /var/log/tinyproxy/tinyproxy.log
+/usr/bin/tinyproxy -d
+#tail -f /var/log/tinyproxy/tinyproxy.log
 # End
-screenOut "$PROG_NAME script ended." && echo
+#screenOut "$PROG_NAME script ended." && echo
 exit 0
