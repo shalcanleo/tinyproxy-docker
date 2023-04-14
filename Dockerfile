@@ -5,4 +5,6 @@ RUN apk add --no-cache \
 	tinyproxy
 
 COPY run.sh /opt/docker-tinyproxy/run.sh
+COPY tinyproxy.conf /etc/tinyproxy/tinyproxy.conf
+
 ENTRYPOINT ["/opt/docker-tinyproxy/run.sh"]
